@@ -10,29 +10,37 @@
   <meta name="description" content="Website and web app Builder framework using Cocreate Componets" />
   <meta name="keywords" content="helper classes, utility classes, css framework, css library, inline style classes" />
   <meta name="robots" content="index,follow" />
-
   <!-- CoCreate CSS -->
   <link rel="stylesheet" href="https://server.cocreate.app/css/CoCreate.min.css" type="text/css" />
-  <link rel="stylesheet" href="../../CoCreate-vdom/src/CoCreate-vdom.css" type="text/css" />
-  <link rel="stylesheet" href="../../CoCreate-dnd/src/CoCreate-dnd.css" type="text/css" />
-
+  <link rel="stylesheet" href="https://server.cocreate.app/CoCreate-components/CoCreate-vdom/src/CoCreate-vdom.css" type="text/css" />
+  <link rel="stylesheet" href="https://server.cocreate.app/CoCreate-components/CoCreate-dnd/src/CoCreate-dnd.css" type="text/css" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" crossorigin="anonymous" />
-
+  <!--<script src="https://server.cocreate.app/CoCreate-components/CoCreate-styles/src/CoCreate-styles.js"></script>-->
   <style>
     /* this is already apart of COCreate.min.css but we only remove and add one hidden in an element */
 
-    .hidden.hidden {
+    .vdom-item+div .collapse>.vdom-item {
       display: none;
     }
-  </style>
 
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      opacity: 1;
+    }
+
+    .selected {
+      margin: 0;
+      padding: 0;
+      height: 25px;
+      min-height: 25px;
+    }
+  </style>
 </head>
 
 <body>
   <!-- Navbar  -->
-  <div class="nav display:flex align-items:center bg:light-gray" data-main_content_id="canvas" data-scroll_effect="hide-nav" data-scroll_up="1" data-scroll_down="1">
-
+  <div class="nav display:flex align-items:center bg:light-gray" data-main_content_id="nav" data-scroll_effect="hide-nav" data-scroll_up="1" data-scroll_down="1">
     <!-- Menu Icon Animations -->
     <a class="nav-toggle menu_icon--Vdots" data-toggle_sidenav="menuL">
       <div class="circle"></div>
@@ -41,155 +49,243 @@
       <div class="circle"></div>
       <div class="circle"></div>
     </a>
-
     <!-- Horizontal Scroll Nav/Tabs -->
     <ul class="cocreate-scroll display:inline-flex direction:rtl font-size:24px align-items:center list-style-type:none width:100% height:50px">
-
       <!-- Modal Controls -->
-      <li class="margin-right:15px">
-        <a class="btn-modal-close"><i class="fas fa-times"></i></a>
-      </li>
+      <li class="margin-right:15px"> <a class="btn-modal-close"><i class="fas fa-times"></i></a> </li>
       <li class="margin-right:15px"><a class="btn-modal-maximize"><i data-transform_to="far fa-window-restore" class="far fa-window-maximize">
-  			  </i></a>
-      </li>
+  			  </i></a> </li>
       <li class="margin-right:15px"><a class="btn-modal-minimize"><i class="far fa-window-minimize">
-  			  </i></a>
-      </li>
-
+  			  </i></a> </li>
       <!-- fullscreen toogle and icon transform-->
-      <li class="margin-right:15px">
-        <a data-fullscreen><i data-transform_to="fas fa-compress" class="fas fa-expand"></i></a>
-      </li>
-
+      <li class="margin-right:15px"> <a data-fullscreen><i data-transform_to="fas fa-compress" class="fas fa-expand"></i></a> </li>
       <!-- Open code Editor in modal-->
-      <li class="margin-right:15px">
-        <a target="modal" href="code-editor.html" data-modal_header="true" data-pass_collection="blocks" data-pass_document_id="" data-pass_to="form-fields" data-modal_width="100%" data-modal_height="100%" data-modal_color="#229954">
+      <li class="margin-right:15px"> <a target="modal" href="code-editor.html" data-modal_header="true" data-pass_collection="blocks" data-pass_document_id="" data-pass_to="form-fields" data-modal_width="100%" data-modal_height="100%" data-modal_color="#229954">
       	    <i class="fa fa-code"></i>
-          </a>
-      </li>
-
+          </a> </li>
       <!-- Builder Controls -->
-      <li class="margin-right:15px">
-        <a id="clean-canvas">
+      <li class="margin-right:15px"> <a id="clean-canvas">
 						<i class="far fa-trash-alt"></i>
-					</a>
-      </li>
-      <li class="margin-right:15px">
-        <a id='element-borders' class=""><i class="far fa-square"></i></a>
-      </li>
-      <li class="margin-right:15px">
-        <a id="redo-canvas" class=""><i class="fas fa-redo-alt"></i></a>
-      </li>
-      <li class="margin-right:15px">
-        <a id='undo-canvas' class=""><i class="fas fa-undo-alt"></i></a>
-      </li>
-
-      <li class="margin-right:15px">
-        <a id="desktop-view" class=""><i class="fas fa-desktop"></i></a>
-      </li>
-      <li class="margin-right:15px">
-        <a id="tablet-view" class=""><i class="fas fa-tablet-alt"></i></a>
-      </li>
-      <li class="margin-right:15px">
-        <a id="mobile-view" class=""><i class="fas fa-mobile-alt"></i></a>
-      </li>
+					</a> </li>
+      <li class="margin-right:15px"> <a id='element-borders' class=""><i class="far fa-square"></i></a> </li>
+      <li class="margin-right:15px"> <a id="redo-canvas" class=""><i class="fas fa-redo-alt"></i></a> </li>
+      <li class="margin-right:15px"> <a id='undo-canvas' class=""><i class="fas fa-undo-alt"></i></a> </li>
+      <li class="margin-right:15px"> <a id="desktop-view" class=""><i class="fas fa-desktop"></i></a> </li>
+      <li class="margin-right:15px"> <a id="tablet-view" class=""><i class="fas fa-tablet-alt"></i></a> </li>
+      <li class="margin-right:15px"> <a id="mobile-view" class=""><i class="fas fa-mobile-alt"></i></a> </li>
     </ul>
   </div>
-
   <!-- Modal viewport -->
   <div class="position:fixed margin-top:50px" data-main_content_id="canvas" id="modal-viewport"></div>
-
   <!-- Main Container -->
-  <div data-main_content_id="canvas" class="height:100vh overflow:scroll">
-    <iframe data-vdom_id="test" id="canvas" data-document_id="5eefe30952c6e94c75fb5e3f" src="./iframe.html" frameborder="0" width="100%" height="100%"></iframe>
-  </div>
-
+  <div data-main_content_id="canvas" class="height:100vh"> <iframe data-vdom_id="test" id="canvas" data-document_id="5eefe30952c6e94c75fb5e3f" src="./iframe.html" frameborder="0" width="100%" height="100%"></iframe> </div>
   <!-- CoCreate SideNav Left -->
-  <div id="menuL" class="cocreate-sidenav bg:medium-gray" data-main_content="canvas" sidenav_default_desktop="expanded" sidenav_default_tablet="offcanvas" sidenav_default_phone="offcanvas" sidenav_ontoggle_desktop="offcanvas" sidenav_ontoggle_tablet="offcanvas">
+  <div id="menuL" class="cocreate-sidenav bg:medium-gray" data-main_content="canvas,nav" sidenav-default_desktop="expanded" sidenav-default_tablet="offcanvas" sidenav-default_phone="offcanvas" sidenav-ontoggle_desktop="offcanvas" sidenav-ontoggle_tablet="offcanvas">
     <div class="">
       <ul class="overflow:scroll height:100vh margin:5px bg:white padding:0 padding-left:5px">
         <div data-vdom_target="test" data-group_name="test"></div>
         <!-- CoCreate Render to get list of blocks -->
         <div data-template_id="template1" data-fetch_collection="blocks" data-filter_name="menu-position" data-filter_value="0" data-filter_value_type="number" data-filter_operator="$ne" data-order_by="menu-position" data-order_type="asc" data-pass_to="blocks">
         </div>
-
         <!-- template -->
-        <li data-draggable="true" class="template menuItem" id="header" data-insert-html='{{html}}'>
-          <span data-collection="" data-document_id="" name="icon" data-pass_id="blocks" class="padding-10px"></span>
-          <span data-collection="" data-document_id="" name="name" data-pass_id="blocks"></span>
-          <div class="float-right">
-            <a target="modal" href="block-form.html" data-pass_collection="blocks" data-pass_document_id="" data-pass_id="blocks" data-pass_to="form-fields" data-modal_width="320px" data-modal_height="100%" data-modal_color="#229954">
+        <li data-draggable="true" class="template menuItem" id="header" data-insert-html='{{html}}'> <span data-collection="" data-document_id="" name="icon" data-pass_id="blocks" class="padding-10px"></span> <span data-collection="" data-document_id="" name="name" data-pass_id="blocks"></span>
+          <div class="float-right"> <a target="modal" href="block-form.html" data-pass_collection="blocks" data-pass_document_id="" data-pass_id="blocks" data-pass_to="form-fields" data-modal_width="320px" data-modal_height="100%" data-modal_color="#229954">
                 <i class="fas fa-pencil-alt"></i>
-      				</a>
-          </div>
-          <span data-collection="" data-document_id="" name="html" data-pass_id="blocks"></span>
-        </li>
-
+      				</a> </div> <span data-collection="" data-document_id="" name="html" data-pass_id="blocks"></span> </li>
       </ul>
     </div>
-
     <div class="resizeHandler"></div>
   </div>
   <!-- End CoCreate SideNav Left -->
-
   <!-- CoCreate SideNav Right -->
-  <div id="menuR" class="cocreate-sidenav sidenav-right bg:medium-gray" data-main_content="canvas" sidenav_default_desktop="expanded" sidenav_default_tablet="expanded">
-    <div class="padding:5px">
+  <div id="menuR" class="cocreate-sidenav sidenav-right height:100vh background:gainsboro margin-top:50px" data-main_content="canvas" sidenav-default_desktop="expanded" sidenav-default_tablet="expanded">
+    <div class="cocreate-scroll padding:5px">
       <form>
-        <input id="input1" type="text" class="floating-label" placeholder="Text" name="name" data-attribute="class" data-target="element_id">
-        <input type="text" class="floating-label" placeholder="Text" name="name1" data-attribute="data-draggable" data-target="element_id">
-        <input type="color" class="floating-label" placeholder="color" name="color" id="color">
-        <input type="search" class="floating-label" placeholder="Search" name="search" id="search" data-get_value="text">
-        <input type="date" class="floating-label" placeholder="Date" name="date" id="date">
-        <input type="time" class="floating-label" placeholder="Time" name="time" id="time">
-        <input type="datetime-local" class="floating-label" placeholder="Date Time" name="date-time" id="date-time">
-        <textarea class="floating-label" placeholder="Text Area" name='text_area' id="text_area"></textarea>
-
-
-        <div data-realtime="true" name="selectField2" class="select--field sortable floating-label" placeholder="multiple" multiple>
-          <input class="option-search" placeholder="Search">
-          <ul class="selectable--list cocreate-scroll">
-            <li class="selectable" data-value="value 1">
-              <h3>value 1</h3>
-            </li>
-            <li class="selectable" data-value="value 2">
-              <h3>value 2</h3>
-            </li>
-            <li class="selectable" data-value="value 3">
-              <h3>value 3</h3>
-            </li>
-          </ul>
+        <!--<input type="text" class="floating-label" data-style="classStyle" data-style_property="width"> -->
+        <!--<input type="text" class="floating-label" data-style="classStyle" data-style_property="font-size"> -->
+        <!-- sizing -->
+        <div class="padding:5px background:darkgrey border-bottom:1px_solid_grey" data-show=".sizing" data-hide=".sizing"> <span class="sizing hidden"><i class="fas fa-plus"></i></span> <span class="sizing"><i class="fas fa-minus"></i></span> <span>Sizing</span> </div>
+        <div class="sizing padding-bottom:20px background:silver">
+          <div class="display:flex height:50px">
+            <div class="width:50% margin:5px"> <input id="width" class="floating-label z-index:0" placeholder="width:" value="0" data-style="style" data-style_property="width" data-style_unit="px" data-style_target="">
+              <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">
+                <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#width">
+                  <li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>
+                  <ul class="selectable--list width:30px">
+                    <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>
+                    <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>
+                    <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vw"><span class="margin:auto">vw</span></li>
+                  </ul>
+                </cocreate-select>
+              </div>
+            </div>
+            <div class="width:50% margin:5px"> <input id="height" class="floating-label z-index:0" placeholder="height:" value="0" data-style="style" data-style_property="height" data-style_unit="px">
+              <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">
+                <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#height">
+                  <li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>
+                  <ul class="selectable--list width:30px">
+                    <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>
+                    <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>
+                    <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vh"><span class="margin:auto">vh</span></li>
+                  </ul>
+                </cocreate-select>
+              </div>
+            </div>
+          </div>
         </div>
-
-
-
-        <div class="select--field sortable floating-label" name="selectField4" placeholder="single">
-          <input class="option-search" placeholder="Search">
-          <ul class="selectable--list  cocreate-scroll">
-            <li class="selectable" data-value="value 1">
-              <h3>value 1</h3>
-            </li>
-            <li class="selectable" data-value="value 2">
-              <h3>value 2</h3>
-            </li>
-            <li class="selectable" data-value="value 3">
-              <h3>value 3</h3>
-            </li>
-          </ul>
-        </div>
-
+        <!--		<div class="display:flex height:50px">	-->
+        <!--			<div class="width:50% margin:5px">-->
+        <!--			  <input id="min-width"  class="floating-label z-index:0" placeholder="min-width:" value="0" data-style="classStyle" data-style_property="min-width" data-style_unit="px">-->
+        <!--        <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">-->
+        <!--	        <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#min-width">-->
+        <!--						<li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>		        	-->
+        <!--						<ul class="selectable--list width:30px">-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vw"><span class="margin:auto">vw</span></li>-->
+        <!--						</ul>-->
+        <!--	        </cocreate-select>-->
+        <!--        </div>-->
+        <!--			</div>-->
+        <!--			<div class="width:50% margin:5px">-->
+        <!--			  <input id="min-height"  class="floating-label z-index:0" placeholder="min-height:" value="0"  data-style="classStyle" data-style_property="min-height" data-style_unit="px">-->
+        <!--        <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">-->
+        <!--	        <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#min-height">-->
+        <!--						<li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>		        	-->
+        <!--						<ul class="selectable--list width:30px">-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vh"><span class="margin:auto">vh</span></li>-->
+        <!--						</ul>-->
+        <!--	        </cocreate-select>-->
+        <!--        </div>-->
+        <!--			</div>-->
+        <!--		</div>-->
+        <!--		<div class="display:flex height:50px">	-->
+        <!--			<div class="width:50% margin:5px">-->
+        <!--			  <input id="max-width"  class="floating-label z-index:0" placeholder="max-width:" value="0" data-style="classStyle" data-style_property="max-width" data-style_unit="px">-->
+        <!--        <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">-->
+        <!--	        <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#max-width">-->
+        <!--						<li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>		        	-->
+        <!--						<ul class="selectable--list width:30px">-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vw"><span class="margin:auto">vw</span></li>-->
+        <!--						</ul>-->
+        <!--	        </cocreate-select>-->
+        <!--        </div>-->
+        <!--			</div>-->
+        <!--			<div class="width:50% margin:5px">-->
+        <!--			  <input id="max-height"  class="floating-label z-index:0" placeholder="max-height:" value="0"  data-style="classStyle" data-style_property="max-height" data-style_unit="px">-->
+        <!--        <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">-->
+        <!--	        <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#max-height">-->
+        <!--						<li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>		        	-->
+        <!--						<ul class="selectable--list width:30px">-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vh"><span class="margin:auto">vh</span></li>-->
+        <!--						</ul>-->
+        <!--	        </cocreate-select>-->
+        <!--        </div>-->
+        <!--			</div>-->
+        <!--		</div>-->
+        <!--</div>-->
+        <!-- typography -->
+        <!--<div class="padding:5px background:darkgrey border-bottom:1px_solid_grey" data-show=".typography" data-hide=".typography">-->
+        <!--    <span class="typography hidden"><i class="fas fa-plus"></i></span>-->
+        <!--   <span class="typography"><i class="fas fa-minus"></i></span>-->
+        <!--   <span>Typography</span>-->
+        <!-- </div>-->
+        <!--<div class="typography padding-bottom:20px background:silver">-->
+        <!--		<div class="display:flex height:50px">	-->
+        <!--			<div class="width:50% margin:5px">-->
+        <!--			  <input id="font-size"  class="floating-label z-index:0" placeholder="font-size:" value="0" data-style="classStyle" data-style_property="font-size" data-style_unit="px">-->
+        <!--        <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">-->
+        <!--	        <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px" data-attribute="data-style_unit" data-attribute_target="#font-size">-->
+        <!--						<li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>		        	-->
+        <!--						<ul class="selectable--list width:30px">-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="em"><span class="margin:auto">em</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="rem"><span class="margin:auto">rem</span></li>-->
+        <!--						</ul>-->
+        <!--	        </cocreate-select>-->
+        <!--        </div>-->
+        <!--			</div>-->
+        <!--			<div class="width:50% margin:5px">-->
+        <!--			  <input id="font-weight"  class="floating-label z-index:0" placeholder="font-weight:" value="0" step="100" data-style="classStyle" data-style_property="font-weight" data-style_unit="px">-->
+        <!--        <div class="position:relative width:27px top:-32px right:26px float:right border-radius:2px cursor:pointer">-->
+        <!--	        <cocreate-select class="remove-none border:none border-radius:4px padding:0 width:27px">-->
+        <!--						<li class="margin:0 padding:0 height:25px min-height:25px align-items:center" value="px" selected><span class="margin:auto">px</span><span class="remove">x</span></li>		        	-->
+        <!--						<ul class="selectable--list width:30px">-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px align-items:center" value="px"><span class="margin:auto">px</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="%"><span class="margin:auto">%</span></li>-->
+        <!--						  <li class="selectable margin:0 padding:0 height:25px min-height:25px" value="vh"><span class="margin:auto">vh</span></li>-->
+        <!--						</ul>-->
+        <!--	        </cocreate-select>-->
+        <!--        </div>-->
+        <!--			</div>-->
+        <!--		</div>-->
+        <!--  </div>-->
+        <!-- CoCreate-styles - first example we will test to confirm style and class usecase with  and without unit -->
+        <!-- I think we need add data-style_target="" just because we will need for other examples and usecases later -->
+        <!--  <input type="text" class="floating-label" name="name"  data-style="class" data-style_property="display" data-style_target='[data-element_id=element]'> -->
+        <!--  <input type="text" class="floating-label" name="name"  data-style_attribute="class" data-style_property="min-width" data-style_unit="px" data-style_target='[data-element_id=element]'>-->
+        <!--  <input type="text" class="floating-label" name="name" data-attribute="CoCreateCss:background-color">-->
+        <!--  <input type="text" class="floating-label" name="name" data-attribute="CoCreateCss:height">-->
+        <!--  <input type="text" class="floating-label" name="name" data-attribute="CoCreateCss:width">-->
+        <!--  <input type="text" class="floating-label" name="name" data-attribute="CoCreateCss:min-height">-->
+        <!--  <input type="text" class="floating-label" name="name" data-attribute="CoCreateCss:min-width">-->
+        <!--  <input type="text" class="floating-label" name="name" data-attribute="name"> -->
+        <!--  <input type="text" class="floating-label" name="name" data-point="style.coCreateCss.min-width"> -->
+        <!-- CoCreate-attributes - final version that will work for class, style and attributes will replace CoCreate-styles and domEditorPanel -->
+        <!--  <input id="min-width" type="text" class="floating-label" name="name" data-attribute="class" data-attribute_property="min-width" data-attribute_unit="px">-->
+        <!--  <input type="text" class="floating-label" name="unit" data-attribute="data-attribute_unit" data-attribute_target="#min-with">-->
+        <!--  <input type="text" class="floating-label" name="name" data-style_attribute="attribute" data-style_property="width"> -->
+        <!--  <input type="text" class="floating-label" placeholder="Text" name="name1" data-attribute="data-draggable" data-attribute_target="element_id">-->
+        <!--  <input type="color" class="floating-label" placeholder="color" name="color" id="color">-->
+        <!--  <input type="search" class="floating-label" placeholder="Search" name="search" id="search" data-get_value="text">-->
+        <!--  <input type="date" class="floating-label" placeholder="Date" name="date" id="date">-->
+        <!--  <input type="time" class="floating-label" placeholder="Time" name="time" id="time">-->
+        <!--  <input type="datetime-local" class="floating-label" placeholder="Date Time" name="date-time" id="date-time">-->
+        <!--  <textarea class="floating-label" placeholder="Text Area" name='text_area' id="text_area"></textarea>-->
+        <!--  <div data-realtime="true" name="selectField2" class="select--field sortable floating-label" placeholder="multiple" multiple>-->
+        <!--    <input class="option-search" placeholder="Search">-->
+        <!--    <ul class="selectable--list cocreate-scroll">-->
+        <!--      <li class="selectable" data-value="value 1">-->
+        <!--        <h3>value 1</h3>-->
+        <!--      </li>-->
+        <!--      <li class="selectable" data-value="value 2">-->
+        <!--        <h3>value 2</h3>-->
+        <!--      </li>-->
+        <!--      <li class="selectable" data-value="value 3">-->
+        <!--        <h3>value 3</h3>-->
+        <!--      </li>-->
+        <!--    </ul>-->
+        <!--  </div>-->
+        <!--  <div class="select--field sortable floating-label" name="selectField4" placeholder="single">-->
+        <!--    <input class="option-search" placeholder="Search">-->
+        <!--    <ul class="selectable--list  cocreate-scroll">-->
+        <!--      <li class="selectable" data-value="value 1">-->
+        <!--        <h3>value 1</h3>-->
+        <!--      </li>-->
+        <!--      <li class="selectable" data-value="value 2">-->
+        <!--        <h3>value 2</h3>-->
+        <!--      </li>-->
+        <!--      <li class="selectable" data-value="value 3">-->
+        <!--        <h3>value 3</h3>-->
+        <!--      </li>-->
+        <!--    </ul>-->
+        <!--  </div>-->
       </form>
     </div>
     <div class="resizeHandler"></div>
   </div>
   <!-- End CoCreate SideNav Right -->
-
-  <!-- floating btn -->
-  <a class="position:fixed bottom:15px right:15px padding:15px bg:blue grow-hover round z-index:12" target="modal" href="block-form.html" data-pass_collection="blocks" data-modal_width="320px" data-modal_height="100%" data-modal_color="#229954" data-pass_to="render">
+  <!-- floating btn --><a class="position:fixed bottom:15px right:15px padding:15px bg:blue grow-hover round z-index:12" target="modal" href="block-form.html" data-pass_collection="blocks" data-modal_width="320px" data-modal_height="100%" data-modal_color="#229954" data-pass_to="render">
 	   <i class="fa fa-plus"></i>
   </a>
   <!-- end floating btn -->
-
   <script>
     var config = {
       apiKey: 'c2b08663-06e3-440c-ef6f-13978b42883a',
@@ -197,15 +293,29 @@
       organization_Id: '5de0387b12e200ea63204d6c'
     }
   </script>
-
   <script defer src="https://server.cocreate.app/js/CoCreate.min.js"></script>
-  <script defer src="../../CoCreate-domEditor/src/domEditor.js"></script>
-  <script defer src="../../CoCreate-domEditor/src/element-config.js"></script>
-  <script defer src="../../CoCreate-dnd/dist/dnd.js"></script>
-  <script defer src="../../CoCreate-vdom/dist/CoCreate-vdom.js"></script>
-  <script defer src="../../CoCreate-collapsible/src/collapsible.js"></script>
-  <script defer src="../../CoCreate-domEditorPanel/src/domEditorPanel.js"></script>
+  <!--<script defer src="https://server.cocreate.app/CoCreate-components/CoCreate-domEditor/src/domEditor.js"></script>-->
+  <!--<script defer src="https://server.cocreate.app/CoCreate-components/CoCreate-domEditor/src/element-config.js"></script>-->
+  <!--<script defer src=" https://server.cocreate.app/CoCreate-components/CoCreate-dnd/dist/CoCreate-dnd.js"></script>-->
+  <!--<script defer src=" https://server.cocreate.app/CoCreate-components/CoCreate-vdom/dist/CoCreate-vdom.js"></script>-->
+  <script src="https://server.cocreate.app/CoCreate-components/CoCreate-styles/src/index.js"></script>
+  <script src="https://server.cocreate.app/CoCreate-components/CoCreate-select/src/CoCreate-select.js"></script>
+  <script src="https://server.cocreate.app/CoCreate-components/CoCreate-selected2/src/index.js"></script>
 
+         <script>
+      setTimeout(()=>{
+        
+        window.selected2({
+          elementSelector:'*',
+          targetSelector: 'input',
+          source: 'data-element_id', 
+          destination: 'data-style_target',
+          wrap: '[data-element_id=$1]'
+        })
+        
+        
+      },1000)
+    </script>
 </body>
 
 </html>
