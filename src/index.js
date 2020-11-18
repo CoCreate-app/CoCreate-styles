@@ -50,6 +50,7 @@ if (canvasIframe) {
 
       if (mutation.attributeName === "data-style_target") {
         let element = getElement(inputMeta.input);
+        if(element)
         updateInput(element, [inputMeta.input]);
       } else if(mutation.attributeName === "value") {
         updateElement(inputMeta);
@@ -139,7 +140,11 @@ if (canvasIframe) {
     }
 
     function getElement(input) {
-      return canvas.querySelector(input.getAttribute("data-style_target"));
+      let id = input.getAttribute("data-style_target");
+      if(id)
+      return canvas.querySelector(id);
+      else 
+      return false;
     }
     // function getRealStaticCompStyleOld(element) {
     //   // calculate real css instead of comupted element
