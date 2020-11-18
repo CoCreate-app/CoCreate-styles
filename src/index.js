@@ -1,7 +1,7 @@
 /*global MutationObserver*/
 /**
  * data-style: classStyle | style | attribute
- * data-style_property: any valid css property
+ * data-style_sync: any valid css property
  * data-style_unit: any valid css unit type
  * data-style_target: unique id of element written to data-element_id
  */
@@ -59,8 +59,10 @@ if (canvasIframe) {
     // canvasWindow.CoCreateObserver.addRule({name: 'excludeDndEffects', exclude: '#dropMarker, #dropMarker *, .box-marker *, .tooltip *,  .box-marker, .tooltip, #toolbar, #toolbar *'})
     // canvasWindow.CoCreateObserver.add({observe:['attributes'],include:':not(input)[class], :not(input)[style]',exclude:'[no-observe="true"]', task:watchElementChange })
     window.CoCreateObserver.add({
+      name: 'ccStyle',
       observe: ["attributes"],
-      include: "INPUT[data-style_target], INPUT[value]",
+      attributes: ['data-style_target','value'],
+      include: "INPUT",
       task: watchInputChange,
     });
     // const configElement = {
@@ -194,7 +196,7 @@ if (canvasIframe) {
       if (!dataAttribute) return;
       // console.warn("cc-style: input doesn't have data-style")
       dataAttribute = dataAttribute.toLowerCase();
-      let dataProperty = input.getAttribute("data-style_property");
+      let dataProperty = input.getAttribute("data-style_sync");
       if (!dataProperty) return;
       // console.warn("cc-style: input doesn't have data-style")
       dataProperty = dataProperty.toLowerCase();
