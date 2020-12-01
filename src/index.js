@@ -444,6 +444,15 @@
   window.ccStyle = { init, addFilter };
 
   window.addEventListener("load", () => {
+
+      window.CoCreateObserver.add({
+        name: "ccStyle",
+        observe: ["attributes"],
+        attributes: ["data-style_target", "value"],
+        include: "INPUT",
+        task: watchInputChange,
+        });
+
     init({ windowObject: window, docObject: document });
   });
 })();
