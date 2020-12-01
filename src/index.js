@@ -292,7 +292,7 @@
         let [value, unit] = parseUnit(style);
         input.setAttributeIfDiffer("placeholder", value);
         if (input.value) input.value = value;
-        input.setAttributeIfDiffer("name", elementId);
+        // input.setAttributeIfDiffer("name", elementId);
         input.setAttributeIfDiffer("data-style_unit", unit);
       } else input.setAttributeIfDiffer("data-style_unit", "");
     });
