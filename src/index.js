@@ -36,7 +36,9 @@
       let element = getElement(inputMeta.input);
       if (element) updateInput(element, [inputMeta.input]);
     } else if (mutation.attributeName === "value") {
-      updateElement(inputMeta);
+      let { input, dataAttribute, dataProperty } = inputMeta;
+      let elementId = input.getAttribute("data-style_target");
+      updateElement(inputMeta, elementId, true);
     }
   }
 
@@ -225,7 +227,7 @@
       let inputMeta = validateNewInput(inputCandidate);
       if (!inputMeta) return;
       let { input, dataAttribute, dataProperty } = inputMeta;
-      dataProperty = toCamelCase(dataProperty);
+      let cmlDataProperty = toCamelCase(dataProperty);
       let elementId = element.getAttribute("data-element_id");
       if (!elementId) return;
       let inputElementId = input.getAttribute("data-style_target");
@@ -234,23 +236,28 @@
         let style;
         switch (dataAttribute) {
           case "style":
-            style = computedStyles[dataProperty];
+            style = computedStyles[cmlDataProperty];
             break;
           case "classstyle":
             let coCreateCss = getCoCreateStyle(element.classList);
-            style = coCreateCss[dataProperty];
-            if (!style) style = computedStyles[dataProperty];
+            style = coCreateCss[cmlDataProperty];
+            if (!style) style = computedStyles[cmlDataProperty];
             break;
 
           default:
-            style = computedStyles[dataProperty];
+            style = computedStyles[cmlDataProperty];
         }
         // style= true;
         // update style unit
         if (style) {
           let [value, unit] = parseUnit(style);
           input.setAttributeIfDiffer("placeholder", value);
-          if (input.value) input.value = value;
+
+          if (input.value) {
+            input.value = value;
+            // collaborate({ value, dataAttribute, dataProperty });
+          }
+
           input.setAttributeIfDiffer("name", elementId);
           input.setAttributeIfDiffer("data-style_unit", unit);
         } else input.setAttributeIfDiffer("data-style_unit", "");
@@ -267,7 +274,7 @@
       let inputMeta = validateNewInput(inputCandidate);
       if (!inputMeta) return;
       let { input, dataAttribute, dataProperty } = inputMeta;
-      dataProperty = toCamelCase(dataProperty);
+      let cmlDataProperty = toCamelCase(dataProperty);
       let elementId = element.getAttribute("data-element_id");
       if (!elementId) return;
 
@@ -275,38 +282,39 @@
       let style;
       switch (dataAttribute) {
         case "style":
-          style = computedStyles[dataProperty];
+          style = computedStyles[cmlDataProperty];
           break;
         case "classstyle":
           let coCreateCss = getCoCreateStyle(element.classList);
-          style = coCreateCss[dataProperty];
-          if (!style) style = computedStyles[dataProperty];
+          style = coCreateCss[cmlDataProperty];
+          if (!style) style = computedStyles[cmlDataProperty];
           break;
 
         default:
-          style = computedStyles[dataProperty];
+          style = computedStyles[cmlDataProperty];
       }
       // style= true;
       // update style unit
       if (style) {
         let [value, unit] = parseUnit(style);
         input.setAttributeIfDiffer("placeholder", value);
-        if (input.value) input.value = value;
+
+        if (input.value) {
+          input.value = value;
+          // collaborate({ value, dataAttribute, dataProperty });
+        }
+
         // input.setAttributeIfDiffer("name", elementId);
         input.setAttributeIfDiffer("data-style_unit", unit);
       } else input.setAttributeIfDiffer("data-style_unit", "");
     });
   }
 
-  function updateElement(inputMeta) {
-    let { input, dataAttribute, dataProperty } = inputMeta;
+  function updateElement(inputMeta, elementId, isColl) {
+    let element = allFrame((frame) => frame.querySelector(elementId))[0];
 
-    let elementSelectorId = input.getAttribute("data-style_target");
-    let element = allFrame((frame) =>
-      frame.querySelector(elementSelectorId)
-    )[0];
     if (!element) return;
-
+    let { input, dataProperty, dataAttribute } = inputMeta;
     let style;
 
     let [value, unit] = parseUnit(input.value);
@@ -317,26 +325,65 @@
         // when input is empty remove that style
         if (!input.value) {
           removeccCssStyle(element.classList, dataProperty);
+          isColl &&
+            collaborate({
+              value,
+              input,
+              dataProperty,
+              dataAttribute,
+              element,
+              elementId,
+            });
           return;
         }
         // when there is style set that
 
         style = value + unit;
         element.setCCStyle(dataProperty, style);
+        isColl &&
+          collaborate({
+            value,
+            unit,
+            input,
+            dataProperty,
+            dataAttribute,
+            element,
+            elementId,
+          });
 
         break;
       case "style":
-        dataProperty = toCamelCase(dataProperty);
+        let camelDataProperty = toCamelCase(dataProperty);
         // let computedStyles = getRealStaticCompStyle(element);
         // let styleValue = computedStyles[dataProperty];
         if (!input.value) {
-          element.setStlyeIfDiffer(dataProperty, "");
+          element.setStlyeIfDiffer(camelDataProperty, "") &&
+            isColl &&
+            collaborate({
+              value,
+              input,
+              dataProperty,
+              dataAttribute,
+              element,
+              elementId,
+            });
+
           // element.style[dataProperty] = "";
           return;
         }
 
         style = value + unit;
-        element.setStlyeIfDiffer(dataProperty, style);
+        element.setStlyeIfDiffer(camelDataProperty, style) &&
+          isColl &&
+          collaborate({
+            value,
+            unit,
+            input,
+            dataProperty,
+            dataAttribute,
+            element,
+            elementId,
+          });
         // element.style[dataProperty] = style;
 
         break;
@@ -365,7 +412,10 @@
 
   function setStlyeIfDiffer(property, value) {
     let computedStyles = getRealStaticCompStyle(this);
-    if (computedStyles[property] !== value) this.style[property] = value;
+    if (computedStyles[property] !== value) {
+      this.style[property] = value;
+      return true;
+    } else return false;
   }
 
   function addClassIfDiffer(className) {
@@ -392,10 +442,10 @@
       }
     }
   }
-
-  function init({ windowObject, docObject, isIframe, frame }) {
+  let tools = {};
+  function init({ windowObject, docObject, isIframe, frame, onCollaboration }) {
     let ref;
-
+    tools.onCollaboration = onCollaboration;
     if (isIframe) {
       let frameWindow = frame.contentWindow;
       let frameDocument = frameWindow.document || frame.contentDocument;
@@ -406,10 +456,10 @@
         document: frameDocument,
         isIframe: true,
       };
-      allFrames.set(frame,ref);
+      allFrames.set(frame, ref);
     } else {
       ref = { window: windowObject, document: docObject, isIframe: false };
-      allFrames.set('main',ref);
+      allFrames.set("main", ref);
     }
 
     ref.window.HTMLElement.prototype.setAttributeIfDiffer = setAttributeIfDiffer;
@@ -418,23 +468,25 @@
     ref.window.HTMLElement.prototype.setCCStyle = setCCStyle;
     ref.window.HTMLElement.prototype.getCCStyle = getCCStyle;
 
-    ref.window.addEventListener('load',()=>{
+    ref.window.addEventListener("load", () => {
       ref.window.CoCreateObserver.add({
         name: "ccStyle",
         observe: ["attributes"],
         attributes: ["data-style_target", "value"],
         include: "INPUT",
         task: watchInputChange,
-        });
-    })
+      });
+    });
 
     ref.document.addEventListener("input", (e) => {
       let input = e.target;
+
       // input.isReactive = true;
       let inputMeta = validateNewInput(input);
       if (!inputMeta) return;
 
-      updateElement(inputMeta);
+      let elementId = input.getAttribute("data-style_target");
+      updateElement(inputMeta, elementId, true);
     });
   }
 
@@ -444,15 +496,67 @@
   window.ccStyle = { init, addFilter };
 
   window.addEventListener("load", () => {
-
-      window.CoCreateObserver.add({
-        name: "ccStyle",
-        observe: ["attributes"],
-        attributes: ["data-style_target", "value"],
-        include: "INPUT",
-        task: watchInputChange,
-        });
+    window.CoCreateObserver.add({
+      name: "ccStyle",
+      observe: ["attributes"],
+      attributes: ["data-style_target", "value"],
+      include: "INPUT",
+      task: watchInputChange,
+    });
 
     init({ windowObject: window, docObject: document });
   });
+
+  CoCreateSocket.listen("ccStyle", function ({
+    value,
+    dataAttribute,
+    dataProperty,
+    elementId,
+  }) {
+    let inputs = allFrame((frame) =>
+      frame.querySelector(
+        `[data-style=${dataAttribute}][data-style_sync=${dataProperty}]`
+      )
+    );
+    inputs.forEach((input) => {
+      // if (input.value == value) return;
+      let inputMeta = validateNewInput(input);
+      if (!inputMeta) return;
+      updateElement(inputMeta, elementId);
+    });
+  });
+
+  function collaborate({
+    value,
+    input,
+    dataProperty,
+    dataAttribute,
+    elementId,
+    element,
+    unit,
+  }) {
+    if (value != input.value) return;
+
+    tools.onCollaboration({
+      value,
+      unit,
+      dataProperty,
+      dataAttribute,
+      element,
+    });
+
+    CoCreate.sendMessage({
+      broadcast_sender: false,
+      rooms: "",
+      emit: {
+        message: "ccStyle",
+        data: {
+          value,
+          dataProperty,
+          dataAttribute,
+          elementId,
+        },
+      },
+    });
+  }
 })();
