@@ -8,9 +8,10 @@
 
 // todo: disable input when there is no data-style, there is no reason it to have default value it should be
 // disabled
-(function () {
+(function() {
   let filters = [];
   let allFrames = new Map();
+
   function allFrame(callback) {
     let result = new Set();
     for (let [frameObject, frame] of allFrames) {
@@ -35,7 +36,8 @@
     if (mutation.attributeName === "data-style_target") {
       let element = getElement(inputMeta.input);
       if (element) updateInput(element, [inputMeta.input]);
-    } else if (mutation.attributeName === "value") {
+    }
+    else if (mutation.attributeName === "value") {
       let { input, dataAttribute, dataProperty } = inputMeta;
       let elementId = input.getAttribute("data-style_target");
       updateElement(inputMeta, elementId, true);
@@ -149,6 +151,7 @@
     // watchElementChangeObserver.observe(canvas, configElement);
     return computedStyles;
   }
+
   function validateNewInput(input) {
     let dataAttribute = input.getAttribute("data-style");
     if (!dataAttribute) return;
@@ -199,6 +202,7 @@
       classList.add(name + ":" + value);
     }
   }
+
   function removeccCssStyle(classList, property) {
     let coCreateCss = getCoCreateStyle(classList);
     delete coCreateCss[property];
@@ -249,6 +253,7 @@
         }
         // style= true;
         // update style unit
+        // todo: why it's look like update input? should i update?
         if (style) {
           let [value, unit] = parseUnit(style);
           input.setAttributeIfDiffer("placeholder", value);
@@ -258,9 +263,10 @@
             // collaborate({ value, dataAttribute, dataProperty });
           }
 
-          input.setAttributeIfDiffer("name", elementId);
+          // input.setAttributeIfDiffer("name", elementId);
           input.setAttributeIfDiffer("data-style_unit", unit);
-        } else input.setAttributeIfDiffer("data-style_unit", "");
+        }
+        else input.setAttributeIfDiffer("data-style_unit", "");
       }
     });
   }
@@ -293,20 +299,26 @@
         default:
           style = computedStyles[cmlDataProperty];
       }
-      // style= true;
+
       // update style unit
       if (style) {
         let [value, unit] = parseUnit(style);
-        input.setAttributeIfDiffer("placeholder", value);
+        if (value) {
+          input.setAttributeIfDiffer("placeholder", value);
+          if (input.value) {
+            input.value = value;
+          }
 
-        if (input.value) {
-          input.value = value;
-          // collaborate({ value, dataAttribute, dataProperty });
+
         }
 
-        // input.setAttributeIfDiffer("name", elementId);
-        input.setAttributeIfDiffer("data-style_unit", unit);
-      } else input.setAttributeIfDiffer("data-style_unit", "");
+
+        if (unit)
+          input.setAttributeIfDiffer("data-style_unit", unit);
+          else 
+          input.setAttributeIfDiffer("data-style_unit", '');
+      }
+      else input.setAttributeIfDiffer("data-style_unit", "");
     });
   }
 
@@ -400,7 +412,8 @@
         t += String.fromCharCode(str.charCodeAt(index + 1) - 32);
         t += str.substr(index + 2);
         str = t;
-      } else break;
+      }
+      else break;
     } while (true);
     return str;
   }
@@ -415,7 +428,8 @@
     if (computedStyles[property] !== value) {
       this.style[property] = value;
       return true;
-    } else return false;
+    }
+    else return false;
   }
 
   function addClassIfDiffer(className) {
@@ -443,6 +457,7 @@
     }
   }
   let tools = {};
+
   function init({ windowObject, docObject, isIframe, frame, onCollaboration }) {
     let ref;
     tools.onCollaboration = onCollaboration;
@@ -457,7 +472,8 @@
         isIframe: true,
       };
       allFrames.set(frame, ref);
-    } else {
+    }
+    else {
       ref = { window: windowObject, document: docObject, isIframe: false };
       allFrames.set("main", ref);
     }
@@ -507,7 +523,7 @@
     init({ windowObject: window, docObject: document });
   });
 
-  CoCreateSocket.listen("ccStyle", function ({
+  CoCreateSocket.listen("ccStyle", function({
     value,
     dataAttribute,
     dataProperty,
