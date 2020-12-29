@@ -8,7 +8,7 @@
 
 // todo: disable input when there is no data-style, there is no reason it to have default value it should be
 // disabled
-import { refs as pickrRefs } from '../../CoCreate-builder/src/pickr.js';
+// import { refs as pickrRefs } from '../../CoCreate-builder/src/pickr.js';
 
 let filters = [];
 let allFrames = new Map();
@@ -378,7 +378,7 @@ function updateInput(element, inputs) {
             //   value: value + '',
             //   position: '0',
             // })
-     input.value = value + '';     
+    input.value = value + '';     
         }
       }
 
