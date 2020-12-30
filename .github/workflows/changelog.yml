@@ -23,3 +23,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+
+      - name: Jaid/action-sync-node-meta
+        uses: jaid/action-sync-node-meta@v1.4.0
+        with:
+          githubToken: ${{ secrets.GITHUB }}
+      
+      - name: setup nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'v10.16.0'
+      - run: yarn install
+      - run: yarn build
+      
+      - run: cd ./.github/workflows/ 
+      - run: yarn install 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      - run: node ./.github/workflows/upload_s3.js 
+        env:
+          AWSKEYID: ${{ secrets.AWSKEYID }}
+          AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
+          DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
