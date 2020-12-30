@@ -1,10 +1,10 @@
 # CoCreate-styles
 Update dom styles using html5 data-attributes on inputs, check boxes, radios and select form fields. Javascript developers still have access to API, callbacks and events. Easy configuration using data-attributes and highly styleable.
 
-![GitHub file size in bytes](https://img.shields.io/github/size/CoCreate-app/CoCreate-boilerplate/dist/CoCreate-boilerplate.min.js?label=minified%20size&style=for-the-badge) 
+![GitHub file size in bytes](https://img.shields.io/github/size/CoCreate-app/CoCreate-styles/dist/CoCreate-styles.min.js?label=minified%20size&style=for-the-badge) 
 ![GitHub latest release](https://img.shields.io/github/v/release/CoCreate-app/CoCreate-styles?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/CoCreate-app/CoCreate-boilerplate?style=for-the-badge) 
-![GitHub labels](https://img.shields.io/github/labels/CoCreate-app/CoCreate-boilerplate/help%20wanted?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/CoCreate-app/CoCreate-styles?style=for-the-badge) 
+![GitHub labels](https://img.shields.io/github/labels/CoCreate-app/CoCreate-styles/help%20wanted?style=for-the-badge)
 
 
 ![CoCreate](https://cdn.cocreate.app/logo.png)
