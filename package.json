@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/styles",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/CoCreate-app/CoCreate-styles.git"
   },
-  "author": "Frank Pagan",
-  "license": "ISC",
+  "author": "CoCreate LLC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CoCreate-app/CoCreate-styles/issues"
   },
