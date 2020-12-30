@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.2...v1.0.3) (2020-12-30)
+
+
+### Bug Fixes
+
+* (add release badge) ([184fb7b](https://github.com/CoCreate-app/CoCreate-styles/commit/184fb7b20475674f1cf7f2eed8b54425855cacde))
+
 ## [1.0.2](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.1...v1.0.2) (2020-12-30)
 
 
