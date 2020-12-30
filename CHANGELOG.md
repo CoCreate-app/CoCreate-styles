@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.1...v1.0.2) (2020-12-30)
+
+
+### Bug Fixes
+
+* add dist ([9468565](https://github.com/CoCreate-app/CoCreate-styles/commit/9468565f3783a598f1fe62b6c740e5c87b854052))
+
 ## [1.0.1](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.0...v1.0.1) (2020-12-30)
 
 
