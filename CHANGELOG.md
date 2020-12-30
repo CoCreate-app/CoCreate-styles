@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.0...v1.0.1) (2020-12-30)
+
+
+### Bug Fixes
+
+* dummy change 2 ([e2446f5](https://github.com/CoCreate-app/CoCreate-styles/commit/e2446f560db38f1a94bbce772a0f285b6e83fe4f))
+
 # 1.0.0 (2020-12-30)
 
 
