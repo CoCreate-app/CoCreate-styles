@@ -137,7 +137,16 @@ function getElement(input) {
 //   }
 // }
 // getAllStyles();
+let cache = new Map();
 function getRealStaticCompStyle(element) {
+  let shouldCache = false;
+  if(cache.has(element))
+  {
+    return cache.get(element);
+  }else if(cache.length < 10)
+  {
+    shouldCache = true;
+  }
   // calculate real css instead of comupted element
   // watchElementChangeObserver.disconnect();
   let oldDispaly = element.style.display;
@@ -152,6 +161,8 @@ function getRealStaticCompStyle(element) {
   if (element.getAttribute("style") == "") element.removeAttribute("style");
   // element.removeAttribute('no-observe')
   // watchElementChangeObserver.observe(canvas, configElement);
+  if(shouldCache)
+    cache.set(element, computedStyles);
   return computedStyles;
 }
 
