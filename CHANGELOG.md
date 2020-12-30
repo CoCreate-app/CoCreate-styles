@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.3...v1.0.4) (2020-12-30)
+
+
+### Bug Fixes
+
+* (fix min file badge) ([4e528c0](https://github.com/CoCreate-app/CoCreate-styles/commit/4e528c0d50d60da69f38b71f312b3bfe57d78868))
+
 ## [1.0.3](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.2...v1.0.3) (2020-12-30)
 
 
