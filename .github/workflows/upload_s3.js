@@ -6,8 +6,8 @@ var fs = require('fs');
 
 console.log("Saving File in S3");
 let s3 = new S3({
-  accessKeyId: process.env.AWSKEYID,
-  secretAccessKey: process.env.AWSACCESSKEY,
+  accessKeyId: process.env.AWSACCESSKEYID,
+  secretAccessKey: process.env.AWSSECERTACCESSKEY,
 })
 const config = {
   Key: path.basename(process.env.DIST_FILE_NAME),

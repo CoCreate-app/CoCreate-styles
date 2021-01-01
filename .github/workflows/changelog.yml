@@ -16,8 +16,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: '@cocreate'
-      - run: npm ci
+          scope: '@cocreate-app'
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
@@ -38,8 +37,8 @@ jobs:
           # You can specify specifying version range for the extra plugins if you prefer.
           extra_plugins: |
             @semantic-release/changelog
-            @semantic-release/git
             @semantic-release/npm
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
