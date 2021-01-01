@@ -1,7 +1,11 @@
 {
   "name": "@cocreate/styles",
   "version": "0.1.1",
-  "description": "testing",
+  "description": "testing the new description",
+  "keywords": [
+    "cocreate",
+    "lowcode"
+  ],
   "main": "app.js",
   "scripts": {
     "start": "npx webpack --config webpack.config.js --watch",

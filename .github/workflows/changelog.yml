@@ -11,7 +11,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+        
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@cocreate'
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
+          
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:
@@ -28,7 +38,7 @@ jobs:
       - name: Jaid/action-sync-node-meta
         uses: jaid/action-sync-node-meta@v1.4.0
         with:
-          # direction: overwrite-github # default is overwrite-file
+          direction: overwrite-github # default is overwrite-file
           githubToken: ${{ secrets.GITHUB }}
       
       - name: setup nodejs
@@ -36,18 +46,20 @@ jobs:
         with:
           node-version: 'v10.16.0'
           
-      - name: build production version
-        run: yarn install
-        run: yarn build
+      # - name: build production version
+      - run: yarn install
+      - run: yarn build
       
       
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
       
+      - name: make ready to upload to s3
+        run: (cd ./.github/workflows/  && yarn install)
       - name: upload to s3
-        run: (cd ./.github/workflows/  && yarn install) 
-      - run: node ./.github/workflows/upload_s3.js 
+        run: node ./.github/workflows/upload_s3.js 
         env:
           AWSKEYID: ${{ secrets.AWSKEYID }}
           AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
           DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
+          
