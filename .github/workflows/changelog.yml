@@ -12,55 +12,55 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 12
-      #     registry-url: https://npm.pkg.github.com/
-      #     scope: '@cocreate-app'
-      # - run: npm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@cocreate-app'
+      - run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
             
           
           
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
-        with:
-          # You can specify specifying version range for the extra plugins if you prefer.
-          extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/npm
-            @semantic-release/git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Semantic Release
+      #   uses: cycjimmy/semantic-release-action@v2
+      #   with:
+      #     # You can specify specifying version range for the extra plugins if you prefer.
+      #     extra_plugins: |
+      #       @semantic-release/changelog
+      #       @semantic-release/npm
+      #       @semantic-release/git
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           
 
-      - name: Jaid/action-sync-node-meta
-        uses: jaid/action-sync-node-meta@v1.4.0
-        with:
-          direction: overwrite-github # default is overwrite-file
-          githubToken: ${{ secrets.GITHUB }}
+      # - name: Jaid/action-sync-node-meta
+      #   uses: jaid/action-sync-node-meta@v1.4.0
+      #   with:
+      #     direction: overwrite-github # default is overwrite-file
+      #     githubToken: ${{ secrets.GITHUB }}
       
-      - name: setup nodejs
-        uses: actions/setup-node@v2
-        with:
-          node-version: 'v10.16.0'
+      # - name: setup nodejs
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: 'v10.16.0'
           
-      # - name: build production version
-      - run: yarn install
-      - run: yarn build
+      # # - name: build production version
+      # - run: yarn install
+      # - run: yarn build
       
       
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
+      # # - name: Setup tmate session
+      # #   uses: mxschmitt/action-tmate@v3
       
-      - name: make ready to upload to s3
-        run: (cd ./.github/workflows/  && yarn install)
-      - name: upload to s3
-        run: node ./.github/workflows/upload_s3.js 
-        env:
-          AWSKEYID: ${{ secrets.AWSKEYID }}
-          AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
-          DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
+      # - name: make ready to upload to s3
+      #   run: (cd ./.github/workflows/  && yarn install)
+      # - name: upload to s3
+      #   run: node ./.github/workflows/upload_s3.js 
+      #   env:
+      #     AWSKEYID: ${{ secrets.AWSKEYID }}
+      #     AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
+      #     DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
           
