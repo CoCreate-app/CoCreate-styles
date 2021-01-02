@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.4...v1.0.5) (2021-01-02)
+
+
+### Bug Fixes
+
+* apply semantic version on package.json on github ([fbe3291](https://github.com/CoCreate-app/CoCreate-styles/commit/fbe329182ee4c277fffe16dbbc7dd3b06a658e44))
+
 ## [1.0.4](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.3...v1.0.4) (2020-12-30)
 
 
