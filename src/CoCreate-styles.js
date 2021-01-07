@@ -42,11 +42,11 @@ function watchInputChange(mutation) {
     let element = getElement(inputMeta.input);
     if (element) updateInput(element, [inputMeta.input]);
   }
-  else if (mutation.attributeName === "value") {
-    let { input, dataAttribute, dataProperty } = inputMeta;
-    let elementId = input.getAttribute("data-style_target");
-    updateElement(inputMeta, elementId, true);
-  }
+  // else if (mutation.attributeName === "value") {
+  //   let { input, dataAttribute, dataProperty } = inputMeta;
+  //   let elementId = input.getAttribute("data-style_target");
+  //   updateElement(inputMeta, elementId, true);
+  // }
 }
 
 // function watchElementChange(mutationsList, observer) {
