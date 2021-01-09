@@ -54,7 +54,7 @@ jobs:
           node-version: 'v10.16.0'
           
       # - name: build production version
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn build
 
       
@@ -66,4 +66,6 @@ jobs:
           AWSKEYID: ${{ secrets.AWSKEYID }}
           AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
           DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
-          
+      
+      - name: update documentation
+        run: npm run html
