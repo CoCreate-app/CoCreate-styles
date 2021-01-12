@@ -367,7 +367,9 @@ function updateInput(element, inputs) {
       if (inputMeta.input.classList.contains('pickr')) {
         if (!pickrRefs.has(input)) return;
         let pickrIns = pickrRefs.get(input);
-        pickrIns.setColor(style)
+        window.CoCreatePickr.disabledEvent = true;
+        pickrIns.setColor(style);
+        window.CoCreatePickr.disabledEvent = false;
       }
       else {
 
