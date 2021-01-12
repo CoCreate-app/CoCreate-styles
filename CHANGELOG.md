@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.5...v1.0.6) (2021-01-12)
+
+
+### Bug Fixes
+
+* **pickr:** disable pickr event trigging on api calls ([3e65ec4](https://github.com/CoCreate-app/CoCreate-styles/commit/3e65ec44f0dcdcf18745aef2fb0768d889766989))
+* fix changelog workflow ([4e5acf9](https://github.com/CoCreate-app/CoCreate-styles/commit/4e5acf935a62b3c99c1c5218c409a30b8afe3cbd))
+
 ## [1.0.5](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.4...v1.0.5) (2021-01-02)
 
 
