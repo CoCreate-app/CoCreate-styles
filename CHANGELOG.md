@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.6...v1.0.7) (2021-01-15)
+
+
+### Bug Fixes
+
+* (fixed bug that caused all color fields to be added when an element is selected.) ([e62ec36](https://github.com/CoCreate-app/CoCreate-styles/commit/e62ec362de68cfaedb68094ce23a0581365ac377))
+
 ## [1.0.6](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.5...v1.0.6) (2021-01-12)
 
 
