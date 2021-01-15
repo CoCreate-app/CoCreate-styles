@@ -1,9 +1,10 @@
 {
   "name": "@cocreate/styles",
   "version": "1.0.5",
-  "description": "testing the new description",
+  "description": "Target elements and update there style or class attributes",
   "keywords": [
     "cocreate",
+    "no code framework",
     "lowcode"
   ],
   "main": "app.js",
