@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.7...v1.0.8) (2021-01-15)
+
+
+### Bug Fixes
+
+* (update automation cl-cd) ([2474cbd](https://github.com/CoCreate-app/CoCreate-styles/commit/2474cbd41061d4a44273542542faad4c242ce730))
+
 ## [1.0.7](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.6...v1.0.7) (2021-01-15)
 
 
