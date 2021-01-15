@@ -1,7 +1,7 @@
 {
   "name": "@cocreate/styles",
-  "version": "1.0.5",
-  "description": "Target elements and update there style or class attributes",
+  "version": "1.0.6",
+  "description": "Update dom styles using html5 data-attributes on inputs, check boxes, radios and select form fields.",
   "keywords": [
     "cocreate",
     "no code framework",
