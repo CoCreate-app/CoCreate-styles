@@ -3,9 +3,7 @@
   "version": "1.0.6",
   "description": "Update dom styles using html5 data-attributes on inputs, check boxes, radios and select form fields.",
   "keywords": [
-    "cocreate",
-    "no code framework",
-    "lowcode"
+    "cocreate","no-code-framework","lowcode"
   ],
   "main": "app.js",
   "scripts": {

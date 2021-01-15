@@ -27,7 +27,14 @@ jobs:
       #     NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
             
           
-          
+  # overwrite description and keyworkds
+      - name: Jaid/action-sync-node-meta
+        uses: jaid/action-sync-node-meta@v1.4.0
+        with:
+          direction: overwrite-github # default is overwrite-file
+          githubToken: ${{ secrets.GITHUB }}
+  
+  # Auto Changog generator
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:
@@ -40,14 +47,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
-      # overwrite description and keyworkds
-      - name: Jaid/action-sync-node-meta
-        uses: jaid/action-sync-node-meta@v1.4.0
-        with:
-          direction: overwrite-github # default is overwrite-file
-          githubToken: ${{ secrets.GITHUB }}
-      
       
       - name: setup nodejs
         uses: actions/setup-node@v2
