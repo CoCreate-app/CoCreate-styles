@@ -1,3 +1,10 @@
+## [1.0.11](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.10...v1.0.11) (2021-01-18)
+
+
+### Bug Fixes
+
+* action ([a6eaaa4](https://github.com/CoCreate-app/CoCreate-styles/commit/a6eaaa4fa879cee88b3c6fd6ca6b8e2f496c7730))
+
 ## [1.0.10](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.9...v1.0.10) (2021-01-18)
 
 
