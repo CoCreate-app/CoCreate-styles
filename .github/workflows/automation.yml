@@ -37,7 +37,10 @@ jobs:
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
-          
+        
+        
+        
+           
   cdn:
     runs-on: ubuntu-latest
     steps:
@@ -46,12 +49,12 @@ jobs:
           
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - name: cocreate-s3
-        uses: CoCreate-app/CoCreate-s3@master
+
+      - uses: CoCreate-app/CoCreate-s3@master
         with:
-          AWS_KEY_ID: ${{ secrets.AWSKEYID }}
-          AWS_ACCESS_KEY: ${{ secrets.AWSACCESSKEY }}
-          DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
+          aws-key-id: ${{ secrets.AWSACCESSKEYID }}
+          aws-access-key: ${{ secrets.AWSSECERTACCESSKEY }}
+          source: './dist/CoCreate-styles.min.js'
       
       - name: setup nodejs
         uses: actions/setup-node@v2
