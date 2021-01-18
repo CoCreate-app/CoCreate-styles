@@ -4,6 +4,18 @@
 ### Bug Fixes
 
 * action ([a6eaaa4](https://github.com/CoCreate-app/CoCreate-styles/commit/a6eaaa4fa879cee88b3c6fd6ca6b8e2f496c7730))
+* actions ([b12be19](https://github.com/CoCreate-app/CoCreate-styles/commit/b12be1919bffb610377c8dbc7355ffab1c49d6bf))
+* actions ([4f2c5b3](https://github.com/CoCreate-app/CoCreate-styles/commit/4f2c5b3066438838043758fb236b185340b54968))
+* bump version ([8685e18](https://github.com/CoCreate-app/CoCreate-styles/commit/8685e1840849938ad34d78a3fbb14e5764e2a247))
+* bump version ([1c0ab88](https://github.com/CoCreate-app/CoCreate-styles/commit/1c0ab886eff6d6ddad468e242a7f06bc833588e1))
+* disects actions tasks to jobs ([71bd232](https://github.com/CoCreate-app/CoCreate-styles/commit/71bd2320f49a7ea33a4105112382b6ba3947f932))
+
+## [1.0.11](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.10...v1.0.11) (2021-01-18)
+
+
+### Bug Fixes
+
+* action ([a6eaaa4](https://github.com/CoCreate-app/CoCreate-styles/commit/a6eaaa4fa879cee88b3c6fd6ca6b8e2f496c7730))
 * bump version ([8685e18](https://github.com/CoCreate-app/CoCreate-styles/commit/8685e1840849938ad34d78a3fbb14e5764e2a247))
 * bump version ([1c0ab88](https://github.com/CoCreate-app/CoCreate-styles/commit/1c0ab886eff6d6ddad468e242a7f06bc833588e1))
 
