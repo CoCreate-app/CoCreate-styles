@@ -1,8 +1,12 @@
 {
   "name": "@cocreate/styles",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Update dom styles using html5 data-attributes on inputs, check boxes, radios and select form fields.",
-  "keywords": ["cocreate","no-code-framework","lowcode"],
+  "keywords": [
+    "cocreate",
+    "no-code-framework",
+    "lowcode"
+  ],
   "scripts": {
     "start": "npx webpack --config webpack.config.js --watch",
     "build": "NODE_ENV=production npx webpack --config webpack.config.js",
@@ -20,7 +24,6 @@
     "url": "https://github.com/CoCreate-app/CoCreate-styles/issues"
   },
   "homepage": "https://github.com/CoCreate-app/CoCreate-styles#readme",
-  
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",

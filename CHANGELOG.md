@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.8...v1.0.9) (2021-01-18)
+
+
+### Bug Fixes
+
+* (replace docs json config with js) ([26ad8ca](https://github.com/CoCreate-app/CoCreate-styles/commit/26ad8caa800bda5c6379db7bfd63a2efe0818c34))
+
 ## [1.0.8](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.7...v1.0.8) (2021-01-15)
 
 
