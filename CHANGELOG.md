@@ -4,6 +4,15 @@
 ### Bug Fixes
 
 * action ([a6eaaa4](https://github.com/CoCreate-app/CoCreate-styles/commit/a6eaaa4fa879cee88b3c6fd6ca6b8e2f496c7730))
+* bump version ([8685e18](https://github.com/CoCreate-app/CoCreate-styles/commit/8685e1840849938ad34d78a3fbb14e5764e2a247))
+* bump version ([1c0ab88](https://github.com/CoCreate-app/CoCreate-styles/commit/1c0ab886eff6d6ddad468e242a7f06bc833588e1))
+
+## [1.0.11](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.10...v1.0.11) (2021-01-18)
+
+
+### Bug Fixes
+
+* action ([a6eaaa4](https://github.com/CoCreate-app/CoCreate-styles/commit/a6eaaa4fa879cee88b3c6fd6ca6b8e2f496c7730))
 * bump version ([1c0ab88](https://github.com/CoCreate-app/CoCreate-styles/commit/1c0ab886eff6d6ddad468e242a7f06bc833588e1))
 
 ## [1.0.11](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.10...v1.0.11) (2021-01-18)
