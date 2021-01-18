@@ -33,6 +33,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
 
+
+
   # Upload to s3
       - name: cocreate-s3
         uses: CoCreate-app/CoCreate-s3@master
