@@ -1,3 +1,12 @@
+## [1.0.10](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.9...v1.0.10) (2021-01-18)
+
+
+### Bug Fixes
+
+* (workflow automation) ([181adea](https://github.com/CoCreate-app/CoCreate-styles/commit/181adeae9f7ebecafc3637bba2b74dbbbfb179cd))
+* (workflow automation) ([613a29b](https://github.com/CoCreate-app/CoCreate-styles/commit/613a29b0f700eabd04bc9de27565d72606e6ac02))
+* (workflow automation) ([81230d7](https://github.com/CoCreate-app/CoCreate-styles/commit/81230d7aee74c15550968c3f731dccb1b84dc793))
+
 ## [1.0.9](https://github.com/CoCreate-app/CoCreate-styles/compare/v1.0.8...v1.0.9) (2021-01-18)
 
 
