@@ -11,21 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      # debuging action
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
-      
-      
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 12
-      #     registry-url: https://npm.pkg.github.com/
-      #     scope: '@cocreate-app'
-      # - run: npm publish --access=public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
-            
           
   # overwrite description and keyworkds
       - name: Jaid/action-sync-node-meta
@@ -51,8 +36,10 @@ jobs:
       - name: setup nodejs
         uses: actions/setup-node@v2
         with:
-          node-version: 'v10.16.0'
-          
+          node-version: 'v14.15.4'
+            # debuging action
+      # - name: Setup tmate session
+        # uses: mxschmitt/action-tmate@v3
       # - name: build production version
       - run: yarn install --frozen-lockfile
       - run: yarn build
