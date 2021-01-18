@@ -10,7 +10,8 @@
   "scripts": {
     "start": "npx webpack --config webpack.config.js --watch",
     "build": "NODE_ENV=production npx webpack --config webpack.config.js",
-    "docs": "node node_modules/@cocreate/s3/src/CoCreate-s3.js"
+    "docs": "node ./node_modules/@cocreate/docs/src/index.js",
+    "s3": "node ./node_modules/@cocreate/s3/src/CoCreate-s3.js"
   },
   "main": "./src/CoCreate-styles.js",
   "private": false,
@@ -34,7 +35,7 @@
     "webpack-cli": "^4.3.1"
   },
   "dependencies": {
-    "@cocreate/docs": "^1.0.3",
+    "@cocreate/docs": "^1.0.5",
     "@cocreate/s3": "^1.0.1"
   }
 }

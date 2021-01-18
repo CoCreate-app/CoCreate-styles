@@ -814,7 +814,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@cocreate/docs@^1.0.3":
+"@cocreate/docs@^1.0.3", "@cocreate/docs@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@cocreate/docs/-/docs-1.0.5.tgz#c17ee9ba92b451fa43296d303b7cdfa553c99e21"
   integrity sha512-tFfe7+UwnGj2+LwtgXNJU9BqKyGcP3b37FgsIbj87te41Cl/+gTlVZTPUDPxiAyr6Ai6G1Qp3dfLd+fGVcPEKQ==

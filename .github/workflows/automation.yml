@@ -31,7 +31,15 @@ jobs:
             @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
+
+  # Upload to s3
+      - name: cocreate-s3
+        uses: CoCreate-app/CoCreate-s3@master
+        env:
+          AWSKEYID: ${{ secrets.AWSKEYID }}
+          AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
+          DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
       
       - name: setup nodejs
         uses: actions/setup-node@v2
@@ -45,12 +53,12 @@ jobs:
       - run: yarn build
 
       
-      - name: upload to s3
-        run: npm run s3 
-        env:
-          AWSKEYID: ${{ secrets.AWSKEYID }}
-          AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
-          DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
+      # - name: upload to s3
+      #   run: npm run s3 
+      #   env:
+      #     AWSKEYID: ${{ secrets.AWSKEYID }}
+      #     AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
+      #     DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
       
       - name: update documentation
         run: npm run docs
