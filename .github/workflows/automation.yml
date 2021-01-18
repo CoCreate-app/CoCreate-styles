@@ -21,6 +21,9 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+          
   # Auto Changog generator
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
@@ -38,12 +41,14 @@ jobs:
   cdn:
     runs-on: ubuntu-latest
     steps:
-  
+      - name: Checkout
+        uses: actions/checkout@v2
+          
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - name: cocreate-s3
         uses: CoCreate-app/CoCreate-s3@master
-        env:
+        with:
           AWS_KEY_ID: ${{ secrets.AWSKEYID }}
           AWS_ACCESS_KEY: ${{ secrets.AWSACCESSKEY }}
           DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
