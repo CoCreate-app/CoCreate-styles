@@ -18,7 +18,8 @@ jobs:
         with:
           direction: overwrite-github # default is overwrite-file
           githubToken: ${{ secrets.GITHUB }}
-  
+    runs-on: ubuntu-latest
+    steps:
   # Auto Changog generator
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
@@ -32,8 +33,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
-
-  # Upload to s3
+    runs-on: ubuntu-latest
+    steps:
+  
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
       - name: cocreate-s3
         uses: CoCreate-app/CoCreate-s3@master
         env:
@@ -49,8 +53,7 @@ jobs:
       # - name: Setup tmate session
         # uses: mxschmitt/action-tmate@v3
       # - name: build production version
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
+
 
       # - name: upload to s3
       #   run: npm run s3 
