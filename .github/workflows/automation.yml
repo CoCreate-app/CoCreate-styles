@@ -52,10 +52,6 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
 
-
-
-
-      
       # - name: upload to s3
       #   run: npm run s3 
       #   env:
