@@ -6,7 +6,7 @@ on:
   create:
 
 jobs:
-  changelog:
+  updateKeyword:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,6 +18,7 @@ jobs:
         with:
           direction: overwrite-github # default is overwrite-file
           githubToken: ${{ secrets.GITHUB }}
+  ci:
     runs-on: ubuntu-latest
     steps:
   # Auto Changog generator
@@ -33,6 +34,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
+          
+  cdn:
     runs-on: ubuntu-latest
     steps:
   
