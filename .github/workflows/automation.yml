@@ -33,14 +33,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
 
-
-
   # Upload to s3
       - name: cocreate-s3
         uses: CoCreate-app/CoCreate-s3@master
         env:
-          AWSKEYID: ${{ secrets.AWSKEYID }}
-          AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
+          AWS_KEY_ID: ${{ secrets.AWSKEYID }}
+          AWS_ACCESS_KEY: ${{ secrets.AWSACCESSKEY }}
           DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
       
       - name: setup nodejs
