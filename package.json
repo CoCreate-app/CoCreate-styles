@@ -35,7 +35,6 @@
     "webpack-cli": "^4.3.1"
   },
   "dependencies": {
-    "@cocreate/docs": "^1.0.5",
     "@cocreate/s3": "^1.0.1"
   }
 }
