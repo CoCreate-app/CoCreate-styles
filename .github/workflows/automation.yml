@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
           
+          
+          
+          
   # Auto Changog generator
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
