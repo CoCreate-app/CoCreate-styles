@@ -7,8 +7,7 @@
         },
         "host": "server.cocreate.app:8088"
     },
-    "sources": [
-        {
+    "sources": [{
             "path": "./documentation/index.html",
             "collection": "static_html",
             "document_id": "5f08bf3da588c11bf8ead4b3",
@@ -23,5 +22,16 @@
             ],
             "route": "/signup"
         }
+    ],
+    "extensions": [
+        "js",
+        "css",
+        "html"
+    ],
+    "ignores": [
+        "node_modules",
+        "vendor",
+        "bower_components",
+        "archive"
     ]
 }
