@@ -2,8 +2,14 @@ name: CI
 
 on:
   push:
+    branches:
+    - master
   pull_request:
+    branches:
+    - master
   create:
+    branches:
+    - master
 
 jobs:
   updateKeyword:
@@ -55,26 +61,9 @@ jobs:
           aws-access-key: ${{ secrets.AWSSECERTACCESSKEY }}
           source: './dist/CoCreate-styles.min.js'
       
-
-      
       - name: update documentation
-        run: npm run docs
+        uses: CoCreate-app/CoCreate-docs@master
+        
 
 
 
-  #     - name: setup nodejs
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 'v14.15.4'
-            # debuging action
-      # - name: Setup tmate session
-        # uses: mxschmitt/action-tmate@v3
-      # - name: build production version
-
-
-      # - name: upload to s3
-      #   run: npm run s3 
-      #   env:
-      #     AWSKEYID: ${{ secrets.AWSKEYID }}
-      #     AWSACCESSKEY: ${{ secrets.AWSACCESSKEY }}
-      #     DIST_FILE_NAME: './dist/CoCreate-styles.min.js'
