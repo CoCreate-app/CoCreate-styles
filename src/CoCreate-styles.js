@@ -11,7 +11,7 @@
 // import { refs as pickrRefs } from '../../CoCreate-builder/src/pickr.js';
 
 //dummy change 2
-let pickrRefs = window.CoCreatePickr.refs;
+
 
 let filters = [];
 let allFrames = new Map();
@@ -301,7 +301,7 @@ function setPlaceHolders(element) {
           case 'file':
             break;
           case 'color':
-            // CoCreate.replaceDataCrdt({
+            // CoCreate.crdt.replace({
             //   collection: 'builder',
             //   document_id: 'null',
             //   name: input.getAttribute('name'),
@@ -311,7 +311,7 @@ function setPlaceHolders(element) {
             input.value = rgba2hex(value)
             break;
           default:
-            // CoCreate.replaceDataCrdt({
+            // CoCreate.crdt.replace({
             //   collection: 'builder',
             //   document_id: 'null',
             //   name: input.getAttribute('name'),
@@ -365,11 +365,11 @@ function updateInput(element, inputs) {
       let [value, unit] = parseUnit(style);
 
       if (inputMeta.input.classList.contains('pickr')) {
-        if (!pickrRefs.has(input)) return;
-        let pickrIns = pickrRefs.get(input);
-        window.CoCreatePickr.disabledEvent = true;
+        if (!CoCreate.pickr.refs.has(input)) return;
+        let pickrIns = CoCreate.pickr.refs.get(input);
+        CoCreate.pickr.disabledEvent = true;
         pickrIns.setColor(style);
-        window.CoCreatePickr.disabledEvent = false;
+        CoCreate.pickr.disabledEvent = false;
       }
       else {
 
@@ -377,7 +377,7 @@ function updateInput(element, inputs) {
           case 'file':
             break;
           case 'color':
-            // CoCreate.replaceDataCrdt({
+            // CoCreate.crdt.replace({
             //   collection: 'builder',
             //   document_id: 'null',
             //   name: input.getAttribute('name'),
@@ -387,7 +387,7 @@ function updateInput(element, inputs) {
             input.value = rgba2hex(value)
             break;
           default:
-            // CoCreate.replaceDataCrdt({
+            // CoCreate.crdt.replace({
             //   collection: 'builder',
             //   document_id: 'null',
             //   name: input.getAttribute('name'),
@@ -430,8 +430,8 @@ function updateElement(inputMeta, elementId, isColl) {
   let style;
 
   if (input.classList.contains('pickr')) {
-    if (!pickrRefs.has(input)) return;
-    let pickrIns = pickrRefs.get(input);
+    if (!CoCreate.pickr.refs.has(input)) return;
+    let pickrIns = CoCreate.pickr.refs.get(input);
     style = pickrIns.getColor().toHEXA().toString();
     switch (dataAttribute) {
       case "classstyle":
@@ -624,7 +624,7 @@ function init({ windowObject, docObject, isIframe, frame, onCollaboration }) {
   ref.window.HTMLElement.prototype.getCCStyle = getCCStyle;
 
   ref.window.addEventListener("load", () => {
-    ref.window.CoCreateObserver.add({
+    ref.window.CoCreate.observer.add({
       name: "ccStyle",
       observe: ["attributes"],
       attributes: ["data-style_target", "value"],
@@ -648,10 +648,10 @@ function init({ windowObject, docObject, isIframe, frame, onCollaboration }) {
 function addFilter(selector) {
   filters.push(selector);
 }
-window.ccStyle = { init, addFilter };
+
 
 window.addEventListener("load", () => {
-  window.CoCreateObserver.add({
+  window.CoCreate.observer.add({
     name: "ccStyle",
     observe: ["attributes"],
     attributes: ["data-style_target", "value"],
@@ -662,7 +662,7 @@ window.addEventListener("load", () => {
   init({ windowObject: window, docObject: document });
 });
 
-CoCreateSocket.listen("ccStyle", function({
+CoCreate.socket.listen("ccStyle", function({
   value,
   dataAttribute,
   dataProperty,
@@ -698,7 +698,7 @@ function collaborate({
     element,
   });
 
-  CoCreate.sendMessage({
+  CoCreate.message.send({
     broadcast_sender: false,
     rooms: "",
     emit: {
@@ -713,3 +713,5 @@ function collaborate({
     },
   });
 }
+const styles = { init, addFilter };
+export default styles;
