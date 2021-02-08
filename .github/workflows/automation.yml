@@ -18,18 +18,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
           
-  # overwrite description and keyworkds
       - name: Jaid/action-sync-node-meta
         uses: jaid/action-sync-node-meta@v1.4.0
         with:
           direction: overwrite-github # default is overwrite-file
           githubToken: ${{ secrets.GITHUB }}
+  
   ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-  # Auto Changog generator
+
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:
@@ -42,25 +42,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Auto Changog generator
-        
-        
-        
            
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: update documentation
+        uses: CoCreate-app/CoCreate-docs@master
+          
+  
   cdn:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
           
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-
-      - uses: CoCreate-app/CoCreate-s3@master
+      - name: upload cdn
+        uses: CoCreate-app/CoCreate-s3@master
         with:
           aws-key-id: ${{ secrets.AWSACCESSKEYID }}
           aws-access-key: ${{ secrets.AWSSECERTACCESSKEY }}
           source: './dist/CoCreate-styles.min.js'
-      
-      - name: update documentation
-        uses: CoCreate-app/CoCreate-docs@master
-        
