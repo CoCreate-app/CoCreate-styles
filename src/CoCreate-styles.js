@@ -301,24 +301,24 @@ function setPlaceHolders(element) {
           case 'file':
             break;
           case 'color':
-            // CoCreate.crdt.replace({
-            //   collection: 'builder',
-            //   document_id: 'null',
-            //   name: input.getAttribute('name'),
-            //   value: value + '',
-            //   position: '0',
-            // })
-            input.value = rgba2hex(value)
+            CoCreate.crdt.replaceText({
+              collection: 'builder',
+              document_id: 'null',
+              name: input.getAttribute('name'),
+              value: rgba2hex(value) + '',
+              position: '0',
+            })
+            //  input.value = rgba2hex(value)
             break;
           default:
-            // CoCreate.crdt.replace({
-            //   collection: 'builder',
-            //   document_id: 'null',
-            //   name: input.getAttribute('name'),
-            //   value: value + '',
-            //   position: '0',
-            // })
-            input.value = value + '';
+            CoCreate.crdt.replaceText({
+              collection: 'builder',
+              document_id: 'null',
+              name: input.getAttribute('name'),
+              value: value + '',
+              position: '0',
+            })
+            // input.value = value + '';
         }
 
 
@@ -377,24 +377,24 @@ function updateInput(element, inputs) {
           case 'file':
             break;
           case 'color':
-            // CoCreate.crdt.replace({
-            //   collection: 'builder',
-            //   document_id: 'null',
-            //   name: input.getAttribute('name'),
-            //   value: value + '',
-            //   position: '0',
-            // })
-            input.value = rgba2hex(value)
+            CoCreate.crdt.replaceText({
+              collection: 'builder',
+              document_id: 'null',
+              name: input.getAttribute('name'),
+              value: rgba2hex(value) + '',
+              position: '0',
+            })
+            // input.value = rgba2hex(value)
             break;
           default:
-            // CoCreate.crdt.replace({
-            //   collection: 'builder',
-            //   document_id: 'null',
-            //   name: input.getAttribute('name'),
-            //   value: value + '',
-            //   position: '0',
-            // })
-    input.value = value + '';     
+            CoCreate.crdt.replaceText({
+              collection: 'builder',
+              document_id: 'null',
+              name: input.getAttribute('name'),
+              value: value + '',
+              position: '0',
+            })
+    // input.value = value + '';     
         }
       }
 
@@ -629,7 +629,7 @@ function init({ windowObject, docObject, isIframe, frame, onCollaboration }) {
       observe: ["attributes"],
       attributes: ["data-style_target", "value"],
       include: "INPUT, .pickr",
-      task: watchInputChange,
+      callback: watchInputChange,
     });
   });
 
@@ -656,7 +656,7 @@ window.addEventListener("load", () => {
     observe: ["attributes"],
     attributes: ["data-style_target", "value"],
     include: "INPUT, .pickr",
-    task: watchInputChange,
+    callback: watchInputChange,
   });
 
   init({ windowObject: window, docObject: document });
