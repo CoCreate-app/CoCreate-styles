@@ -624,7 +624,7 @@ function init({ windowObject, docObject, isIframe, frame, onCollaboration }) {
   ref.window.HTMLElement.prototype.getCCStyle = getCCStyle;
 
   ref.window.addEventListener("load", () => {
-    ref.window.CoCreate.observer.add({
+    ref.window.CoCreate.observer.init({
       name: "ccStyle",
       observe: ["attributes"],
       attributes: ["data-style_target", "value"],
@@ -651,7 +651,7 @@ function addFilter(selector) {
 
 
 window.addEventListener("load", () => {
-  window.CoCreate.observer.add({
+  window.CoCreate.observer.init({
     name: "ccStyle",
     observe: ["attributes"],
     attributes: ["data-style_target", "value"],
